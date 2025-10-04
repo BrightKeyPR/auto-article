@@ -3,7 +3,7 @@ export async function handler(event) {
     const url = new URL(event.rawUrl).searchParams.get("url");
     if (!url) return { statusCode: 400, body: "Missing ?url=" };
 
-    const reader = await fetch("https://r.jina.ai/http/" + url.replace(/^https?:\/\//, ""));
+    const reader = await fetch("https://r.jina.ai/http://" + url.replace(/^https?:\/\//, ""));
     if (!reader.ok) throw new Error(`Reader failed: ${reader.status}`);
     const contentMarkdown = await reader.text();
 
